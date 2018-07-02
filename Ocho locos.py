@@ -18,7 +18,7 @@ class Carta:
     def __init__(self, color, tipo_carta):
         self._validacion(color, tipo_carta)
         self.color = color
-        self.tipo_carta = tipo_carta
+        self.tipo_carta = type_card
         self.temp_color = None
         self.sprite = Actor('{}_{}'.format(color, tipo_carta))
 
