@@ -21,7 +21,7 @@ class Carta:
         self.color = color
         self.tipo_carta = tipo_carta
         self.temp_color = None
-        self.sprite = Actor('{}_{}'.format(color, tipo_carta))
+        self.sprite = Actor('{}_{}'.format(color, type_card))
 
     def __repr__(self):
         return '<Cartas object: {} {}>'.format(self.color, self.tipo_carta)
