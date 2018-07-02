@@ -76,7 +76,7 @@ class Carta:
     def playable(self, otro):
         return (
             self._color == otro.color or
-            self.tipo_carta == otro.tipo_carta or
+            self.tipo_carta == otro.type_carta or
             otro.color == 'black'
         )
 
