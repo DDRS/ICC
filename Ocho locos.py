@@ -4,21 +4,21 @@ from itertools import product, repeat, chain
 from threading import Thread
 from time import sleep
 
-COLORS = ['red', 'yellow', 'green', 'blue']
-TODOS_COLORES = COLORES + ['black']
-NUMEROS = list(range(10)) + list(range(1,10))
+COLORES = ['red', 'yellow', 'green', 'blue']
+TODOS COLORES = COLORES + ['black']
+NUMEROS = list(range(10)) + list(range(1,11))
 CARTAS_ESPECIALES = ['skip','reverse','+2']
-TIPOS_CARTAS_COLOR = NUMEROS + CARTAS_ESPECIALES * 2
-CARTA_NEGRA_TIPOS = ['wildcard', '+4']
-TIPOS_CARTAS = NUMEROS + CARTAS_ESPECIALES + CARTA_NEGRA_TIPOS
+TIPOS CARTAS COLOR = NUMEROS + CARTAS_ESPECIALES * 2
+CARTA NEGRA TIPOS = ['wildcard', '+4']
+TIPOS CARTAS = NUMEROS + CARTAS_ESPECIALES + CARTA_NEGRA_TIPOS
 
 
-class Carta:
+class Cartas:
 
     def __init__(self, color, tipo_carta):
         self._validacion(color, tipo_carta)
         self.color = color
-        self.tipo_carta = type_card
+        self.tipo_carta = tipo_carta
         self.temp_color = None
         self.sprite = Actor('{}_{}'.format(color, tipo_carta))
 
@@ -39,7 +39,7 @@ class Carta:
 
     def _validacion(self, color, tipo_carta):
 
-        if color not in TODOS_COLORS:
+        if color not in TODOS_COLORES:
             raise ValueError('Invalid color')
         if color == 'black' and tipo_carta not in CARTA_NEGRA_TIPOS:
             raise ValueError('Invalid card type')
@@ -59,7 +59,7 @@ class Carta:
 
     @property
     def _color(self):
-        return self.temp_color if self.temp_color else self.color
+        return self.temp_colores if self.temp_color else self.color
 
     @property
     def temp_color(self):
@@ -68,7 +68,7 @@ class Carta:
     @temp_color.setter
     def temp_color(self, color):
         if color is not None:
-            if color not in COLORS:
+            if color not in COLORES:
                 raise ValueError('Invalid Color')
         self._temp_color = color
 
@@ -132,7 +132,7 @@ class OchoLocos:
 
     def _create_baraja(self, random):
 
-        color_cards = product(COLORS, TIPOS_CARTAS_COLOR)
+        color_cards = product(COLORES, TIPOS_CARTAS_COLOR)
         black_cards = product(repeat('black', 4), BLACK_CARD_TYPES)
         all_cards = chain(color_cards, black_cards)
         baraja = [Carta(color, tipo_carta) for color, tipo_carta in all_cards]
@@ -183,7 +183,7 @@ class OchoLocos:
                 )
             )
         if _carta.color == 'black':
-            if new_color not in COLORS:
+            if new_color not in COLORES:
                 raise ValueError(
                     'Invalid new_color: must be red, yellow, green or blue'
                 )
@@ -229,7 +229,7 @@ class OchoLocos:
 
     def _check_first_carta(self):
         if self.carta_comun.color == 'black':
-            color = choice(COLORS)
+            color = choice(COLORES)
             self.carta_comun.temp_color = color
             print("Selected random color for black card: {}".format(color))
             
@@ -296,7 +296,7 @@ class GameData:
 game_data = GameData()
 
 
-class AIOcho:
+class Ocjo_cho:
     def __init__(self, jugadores):
         self.juego = OchoLocos(jugadores)
         self.jugador = choice(self.juego.jugadores)
@@ -336,7 +336,7 @@ class AIOcho:
             for i, carta in enumerate(jugador.mano):
                 if juego.carta_comun.playable(carta):
                     if carta.color == 'black':
-                        new_color = choice(COLORS)
+                        new_color = choice(COLORES)
                     else:
                         new_color = None
                     juego_data.log = "Jugador {} jugó {:full}".format(jugador, carta)
@@ -357,7 +357,7 @@ cantidad_jugadores = 3
 juego = AIOcho(cantidad_jugadores)
 
 WIDTH = 1200
-HEIGHT = 800
+HEIGHT = 900
 
 baraja_img = Actor('back')
 color_imgs = {color: Actor(color) for color in COLORES}
