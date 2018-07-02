@@ -4,7 +4,7 @@ from itertools import product, repeat, chain
 from threading import Thread
 from time import sleep
 
-COLORES = ['red', 'yellow', 'green', 'blue']
+COLORS = ['red', 'yellow', 'green', 'blue']
 TODOS_COLORES = COLORES + ['black']
 NUMEROS = list(range(10)) + list(range(1,10))
 CARTAS_ESPECIALES = ['skip','reverse','+2']
@@ -39,7 +39,7 @@ class Carta:
 
     def _validacion(self, color, tipo_carta):
 
-        if color not in TODOS_COLORES:
+        if color not in TODOS_COLORS:
             raise ValueError('Invalid color')
         if color == 'black' and tipo_carta not in CARTA_NEGRA_TIPOS:
             raise ValueError('Invalid card type')
@@ -68,7 +68,7 @@ class Carta:
     @temp_color.setter
     def temp_color(self, color):
         if color is not None:
-            if color not in COLORES:
+            if color not in COLORS:
                 raise ValueError('Invalid Color')
         self._temp_color = color
 
@@ -132,7 +132,7 @@ class OchoLocos:
 
     def _create_baraja(self, random):
 
-        color_cards = product(COLORES, TIPOS_CARTAS_COLOR)
+        color_cards = product(COLORS, TIPOS_CARTAS_COLOR)
         black_cards = product(repeat('black', 4), BLACK_CARD_TYPES)
         all_cards = chain(color_cards, black_cards)
         baraja = [Carta(color, tipo_carta) for color, tipo_carta in all_cards]
@@ -183,7 +183,7 @@ class OchoLocos:
                 )
             )
         if _carta.color == 'black':
-            if new_color not in COLORES:
+            if new_color not in COLORS:
                 raise ValueError(
                     'Invalid new_color: must be red, yellow, green or blue'
                 )
@@ -229,7 +229,7 @@ class OchoLocos:
 
     def _check_first_carta(self):
         if self.carta_comun.color == 'black':
-            color = choice(COLORES)
+            color = choice(COLORS)
             self.carta_comun.temp_color = color
             print("Selected random color for black card: {}".format(color))
             
@@ -336,7 +336,7 @@ class AIOcho:
             for i, carta in enumerate(jugador.mano):
                 if juego.carta_comun.playable(carta):
                     if carta.color == 'black':
-                        new_color = choice(COLORES)
+                        new_color = choice(COLORS)
                     else:
                         new_color = None
                     juego_data.log = "Jugador {} jugó {:full}".format(jugador, carta)
