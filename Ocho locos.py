@@ -24,10 +24,10 @@ class Carta:
         self.sprite = Actor('{}_{}'.format(color, tipo_carta))
 
     def __repr__(self):
-        return '<Carta object: {} {}>'.format(self.color, self.tipo_carta)
+        return '<Cartas object: {} {}>'.format(self.color, self.tipo_carta)
 
     def __str__(self):
-        return '{}{}'.format(self.color_short, self.carta_tipo_short)
+        return '{}{}'.format(self.colors_short, self.carta_tipo_short)
 
     def __format__(self, f):
         if f == 'full':
