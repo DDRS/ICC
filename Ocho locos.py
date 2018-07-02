@@ -21,7 +21,7 @@ class Carta:
         self.color = color
         self.tipo_carta = tipo_carta
         self.temp_color = None
-        self.sprite = Actor('{}_{}'.format(color, type_card))
+        self.sprite = Actor('{}_{}'.format(color, tipo_carta))
 
     def __repr__(self):
         return '<Cartas object: {} {}>'.format(self.color, self.tipo_carta)
@@ -293,7 +293,7 @@ class GameData:
     def color_seleccionado(self, value):
         self._color_seleccionado = value
 
-
+        
 game_data = GameData()
 
 
