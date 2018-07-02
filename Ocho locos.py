@@ -4,7 +4,6 @@ from itertools import product, repeat, chain
 from threading import Thread
 from time import sleep
 
-
 COLORES = ['red', 'yellow', 'green', 'blue']
 TODOS_COLORES = COLORES + ['black']
 NUMEROS = list(range(10)) + list(range(1,10))
@@ -233,7 +232,7 @@ class OchoLocos:
             color = choice(COLORES)
             self.carta_comun.temp_color = color
             print("Selected random color for black card: {}".format(color))
-
+            
 
 class ReversibleCycle:
 
